@@ -34,3 +34,24 @@ new HtmlWebpackPlugin({
     inject: false
 })
 ```
+
+## Third step
+
+This step is about setting up an development environment. For development purposes it's nice to have things like hot-reloading and a builtin webserver.
+
+You can install the webpack-dev-server with the following command: `npm install --save-dev webpack-dev-server`.
+To enable the webserver you need to add the following lines to the `webpack.config.js` 
+
+```js
+devServer: {
+    contentBase: './dist',
+    open: true
+},
+```
+
+To turn on the development environment within webpack you need to add `mode: 'development` to the `webpack.config.js`.
+To make debugging a lot easier you can enable inline source maps. This will add mappings to the original code while debugging from a browser. You can do this by adding `devtool: 'inline-source-map'` to `webpack.config.js`
+
+Finally you need to add a new command to `package.json` to serve the website directly from a webserver. This can be done by adding `"start": "webpack serve",` to the `package.json`.
+
+When you run `npm run start` your terminal will open your default browser with the development build of the project.
