@@ -55,3 +55,13 @@ To make debugging a lot easier you can enable inline source maps. This will add 
 Finally you need to add a new command to `package.json` to serve the website directly from a webserver. This can be done by adding `"start": "webpack serve",` to the `package.json`.
 
 When you run `npm run start` your terminal will open your default browser with the development build of the project.
+
+
+## Fourth step
+
+This step is about adding npm packages which are dependencies which can be used inside the project. The main idea is to create a sort of a jukebox where you can drag in Disney songs.
+
+For importing css files into webpack you will need to have a loader called `style-loader`. To add styling you need to create a folder called `styles` into the `src` folder. Styles can be of whatever type of styling you want. i.e. `CSS, SCSS, LESS`. For this demo usage I preferred to stick with CSS.
+
+To make life easier I looked for a solution where you can play songs via Spotify. With Spotify you can use it's Web Playback SDK to convert your browser into a player.
+I choose to use the Spotify API to give the SDK superpowers 🚀 to play songs. 
