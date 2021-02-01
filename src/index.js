@@ -23,8 +23,8 @@ function initializeDropzone() {
         event.preventDefault()
     })
     dropzone.addEventListener('drop', (event) => {
-        console.log(event.dataTransfer.getData('text'))
-        api.play()
+        const track = event.dataTransfer.getData('text')
+        api.play({uris: [track]})
     })
 }
 
