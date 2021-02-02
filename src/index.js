@@ -7,7 +7,6 @@ let accessToken
 
 function initialize() {
     initializeDropzone()
-    initializeDraggable()
     initializeSpotifyAPI()
 
     // Attach SpotifyWebPlaybackSDK to window
@@ -32,6 +31,8 @@ function initializeDraggable() {
     // Initializes HTML5 draggable components with an event listener on dragStart event
     const draggables = document.querySelectorAll('.draggable')
     draggables.forEach(draggable => {
+        const imageElement = draggable.children[0]
+        getCover(imageElement.id, imageElement.getAttribute('data-track'))
         draggable.addEventListener('dragstart', (event) => {
             event.dataTransfer.setData('text/plain', event.target.getAttribute('data-track'))
         })
@@ -78,6 +79,15 @@ function initializeSpotifyAPI() {
     } else {
         api.setAccessToken(accessToken)
     }
+
+    // To retrieve album covers we need to first initialize the Spotify API
+    initializeDraggable()
+}
+
+async function getCover(id, uri) {
+    const trackId = uri.split(':')[2]
+    const track = await api.getTrack(trackId)
+    document.getElementById(id).src = track.album.images[2].url
 }
 
 initialize()
